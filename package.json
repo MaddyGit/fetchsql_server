@@ -1,0 +1,20 @@
+{
+  "name": "fetchsql",
+  "version": "1.0.0",
+  "description": "Query MySQL and manipulate it's results",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "mysql",
+    "query"
+  ],
+  "author": "Danish Dildar Ali",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.3.1"
+  }
+}
