@@ -13,6 +13,7 @@
   "author": "Danish Dildar Ali",
   "license": "MIT",
   "dependencies": {
+    "excel4node": "^1.7.1",
     "express": "^4.16.4",
     "mysql2": "^1.6.5",
     "sequelize": "^5.3.1"
