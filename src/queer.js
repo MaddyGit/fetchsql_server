@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize('rapiddb', 'rapiddb', 'rapiddb', {
-    host : '192.168.0.114'
+    host : '192.168.56.101'
     , dialect : 'mysql'
 })
 
@@ -20,6 +20,22 @@ const getRSs = queries => {
     })
 }
 
+const getRSWithHeader = query => {
+    return new Promise ( (res, rej) => {
+        sequelize.query(query.query)
+        .then(rs => res({header: query.header, rs: rs[0]}))
+        .catch(err => rej(err))
+    })
+}
+
+const getRSsWithHeaders = async queries => {
+    /**
+     * queries = [ {header: '', query: ''}, ... ]
+     */
+
+    return Promise.all(queries.map(query => getRSWithHeader(query)))
+}
+
 module.exports = {
-    getRS, getRSs
+    getRS, getRSs, getRSWithHeader, getRSsWithHeaders
 }

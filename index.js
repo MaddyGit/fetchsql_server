@@ -1,6 +1,7 @@
 const Express = require('express')
 const {getRS} = require('./src/queer')
 const {generateExcel} = require('./src/genxlsx')
+const {getJSONRSs} = require('./src/jsonify')
 
 const app = Express()
 const host = 'localhost'
@@ -33,6 +34,15 @@ app.post('/getexcel', async (req, res) => {
     .then(_ => {
         res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
         res.sendFile(fileFullName)
+    })
+})
+
+app.post('/getrsswh', async (req, res) => {
+    getJSONRSs(req.body.queries)
+    .then(json => res.send(json))
+    .catch(err => {
+        console.log(err)
+        res.send(JSON.stringify(err))
     })
 })
 
